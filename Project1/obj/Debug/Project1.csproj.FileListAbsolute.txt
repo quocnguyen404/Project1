@@ -1,0 +1,16 @@
+C:\Insight Files\Unity game\project1\Project1\Project1\bin\Debug\Project1.exe.config
+C:\Insight Files\Unity game\project1\Project1\Project1\bin\Debug\Project1.exe
+C:\Insight Files\Unity game\project1\Project1\Project1\bin\Debug\Project1.pdb
+C:\Insight Files\Unity game\project1\Project1\Project1\obj\Debug\Project1.csproj.AssemblyReference.cache
+C:\Insight Files\Unity game\project1\Project1\Project1\obj\Debug\Project1.csproj.SuggestedBindingRedirects.cache
+C:\Insight Files\Unity game\project1\Project1\Project1\obj\Debug\Project1.csproj.CoreCompileInputs.cache
+C:\Insight Files\Unity game\project1\Project1\Project1\obj\Debug\Project1.exe
+C:\Insight Files\Unity game\project1\Project1\Project1\obj\Debug\Project1.pdb
+C:\Users\OSC\Desktop\project1\Project1\Project1\bin\Debug\Project1.exe.config
+C:\Users\OSC\Desktop\project1\Project1\Project1\bin\Debug\Project1.exe
+C:\Users\OSC\Desktop\project1\Project1\Project1\bin\Debug\Project1.pdb
+C:\Users\OSC\Desktop\project1\Project1\Project1\obj\Debug\Project1.csproj.AssemblyReference.cache
+C:\Users\OSC\Desktop\project1\Project1\Project1\obj\Debug\Project1.csproj.SuggestedBindingRedirects.cache
+C:\Users\OSC\Desktop\project1\Project1\Project1\obj\Debug\Project1.csproj.CoreCompileInputs.cache
+C:\Users\OSC\Desktop\project1\Project1\Project1\obj\Debug\Project1.exe
+C:\Users\OSC\Desktop\project1\Project1\Project1\obj\Debug\Project1.pdb
