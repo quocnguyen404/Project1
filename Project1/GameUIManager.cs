@@ -8,11 +8,11 @@ namespace Project1
 {
     public class GameUIManager
     {
-        public List<Menu> menus;
+        public Menu[] menus;
 
         public GameUIManager()
         {
-            menus = new List<Menu>();
+            menus = new Menu[5];
 
             MenuGenerate();
             AddFunction();
@@ -20,15 +20,16 @@ namespace Project1
 
         public void MenuGenerate()
         {
+            menus[0] = null;
             menus[1] = new Menu("Weapons");
             menus[2] = new Menu("Cloths");
             menus[3] = new Menu("Inventory");
-            menus[menus.Count + 1] = new Menu("Information");
+            menus[menus.Length - 1] = new Menu("Information");
         }
 
         public void AddFunction()
         {
-            for (int i = 1; i < menus.Count - 1; i++)
+            for (int i = 1; i < menus.Length - 1; i++)
             {
                 menus[i].AddFunction("Update", () => { GamePanel.Update(Menu.inventory); });
                 menus[i].AddFunction("Add", () => { GamePanel.Add(Menu.inventory); }) ;
@@ -36,20 +37,20 @@ namespace Project1
                 menus[i].AddFunction("Show all", () => { GamePanel.ShowAll(Menu.inventory); });
             }
 
-            menus[menus.Count + 1].AddFunction("Show all", () => { Menu.inventory.ShowAllItem(); });
-            menus[menus.Count + 1].AddFunction("Show gold", () => { Console.WriteLine(Menu.inventory.Gold); });
+            menus[menus.Length - 1].AddFunction("Show all", () => { Menu.inventory.ShowAllItem(); });
+            menus[menus.Length - 1].AddFunction("Show gold", () => { Console.WriteLine(Menu.inventory.Gold); });
         }
 
         public void ShowBaseMenu()
         {
             Console.Clear();
             Console.WriteLine("INVENTORY MANAGER MENU");
-            GameUtilities.ShowLine(20);
+            GameUtilities<Item>.ShowLine(20);
 
-            for (int i = 1; i < menus.Count; i++)
+            for (int i = 1; i < menus.Length; i++)
                 Console.WriteLine($"{i}. {menus[i].menuName} Manager");
 
-            GameUtilities.ShowLine(20);
+            GameUtilities<Item>.ShowLine(20);
             Console.Write("Enter selection: ");
             int key = int.Parse(Console.ReadLine());
             menus[key].MenuUI();

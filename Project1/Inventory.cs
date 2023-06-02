@@ -13,9 +13,13 @@ namespace Project1
         protected float gold;
 
         private Dictionary<string, Item> items;
+        private Dictionary<string, Weapon> weapons;
+        private Dictionary<string, Cloth> cloths;
+
+        public Dictionary<string, Item> tempItems;
 
         public float Gold { get => gold; }
-        public Dictionary<string, Item> Items { get => items; }
+        public Dictionary<string, Item> Items { get => tempItems; }
 
         //constructor
         public Inventory()
@@ -23,13 +27,39 @@ namespace Project1
             totalItem = 0;
             gold = 0;
             items = new Dictionary<string, Item>(capacity);
+            weapons = new Dictionary<string, Weapon>();
+            cloths = new Dictionary<string, Cloth>();
+            tempItems = new Dictionary<string, Item>();
         }
         //constructor
+
+        //Weapon Inventory
+        public void WeaponInventory()
+        {
+            tempItems.Clear();
+
+            List<Weapon> weaponSort = GameUtilities<Weapon>.ConvertDictToList(weapons);
+            weaponSort.Sort();
+            for (int i = 0; i < weaponSort.Count; i++)
+                tempItems[weaponSort[i].Name] = weaponSort[i];
+        }
+        //Weapon Inventory
+
+        //Cloth Inventory
+        public void ClothInventory()
+        {
+            tempItems.Clear();
+
+            List<Cloth> clothSort = GameUtilities<Cloth>.ConvertDictToList(cloths);
+            clothSort.Sort();
+            for (int i = 0; i < clothSort.Count; i++)
+                tempItems[clothSort[i].Name] = clothSort[i];
+        }
 
         //Store item
         public void StoreItem(Item item)
         {
-            if (totalItem >= 10)
+            if (totalItem >= capacity)
                 return;
 
             if (Items.ContainsKey(item.Name))
@@ -58,7 +88,8 @@ namespace Project1
                 Items.Remove(item.Name);
                 totalItem--;
             }
-            else return;
+            else 
+                return;
         }
         //Sell item
 

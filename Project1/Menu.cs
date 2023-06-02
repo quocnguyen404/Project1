@@ -11,8 +11,8 @@ namespace Project1
     {
         public static Inventory inventory = new Inventory();
         public string menuName = "";
+
         List<MenuFunction> Functions;
-        //GameUIManager gameUIManager = new GameUIManager();
 
         public Menu(string menuName)
         {
@@ -29,7 +29,7 @@ namespace Project1
         {
             Console.Clear();
             Console.WriteLine($"{this.menuName.ToUpper()} MENU MANAGER");
-            GameUtilities.ShowLine(20);
+            GameUtilities<Item>.ShowLine(20);
 
             int index = 1;
             foreach (MenuFunction function in Functions)
@@ -37,7 +37,7 @@ namespace Project1
                 Console.WriteLine($"{index}. {function.name} {menuName.ToLower()}");
             }
 
-            GameUtilities.ShowLine(20);
+            GameUtilities<Item>.ShowLine(20);
 
             Console.Write("Enter selection: ");
             int key = int.Parse(Console.ReadLine());

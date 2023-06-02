@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project1
 {
-    public static class GameUtilities
+    public static class GameUtilities<T> where T : Item
     {
 
         public static void ShowInfor(List<Item> items)
@@ -84,9 +84,9 @@ namespace Project1
         // check weapon quality is Epic or Rare
 
         //Convert Dictionary to List
-        public static List<Item> ConvertDictToList(Dictionary<string, Item> items)
+        public static List<T> ConvertDictToList(Dictionary<string, T> items)
         {
-            List<Item> itemsList = new List<Item>(items.Values);
+            List<T> itemsList = new List<T>(items.Values);
             return itemsList;
         }
         //Convert Dictionary to List
