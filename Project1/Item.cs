@@ -21,8 +21,8 @@ namespace Project1
         protected _Type type;
 
         public int itemID { get => id; }
-        public string Name { get => name; }
-        public virtual float Price { get => price; }
+        public string Name { get => name; set => name = value; }
+        public virtual float Price { get => price; set => price = value; }
         public _Type Type { get => type; }
 
         public int CompareTo(Item other)

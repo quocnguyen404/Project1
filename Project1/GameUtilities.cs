@@ -6,27 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project1
 {
-    public static class GameUtilities<T> where T : Item
+    public static class GameUtilities
     {
-
-        public static void ShowInfor(List<Item> items)
-        {
-            foreach (Item item in items)
-            {
-                item.ShowInfor();
-            }
-        }
-
-        //show infor of List<Weapon>
-        public static void ShowInfor(List<Weapon> weapons)
-        {
-            foreach (Weapon weapon in weapons)
-            {
-                weapon.ShowInfor();
-            }
-        }
-        //show infor of List<Weapon>
-
         //Get random value
         public static int GetRandom(int min, int max)
         {
@@ -46,6 +27,20 @@ namespace Project1
                 return new Cloth();
         }
         //Get random item
+
+        //Get new weapon
+        public static Item GetAWeapon()
+        {
+            return new Weapon();
+        }
+        //Get new weapon
+
+        //Get new cloth
+        public static Item GetACloth()
+        {
+            return new Cloth();
+        }
+        //Get new cloth
 
         //CAN STORE CONDITION
         //store new item
@@ -83,18 +78,12 @@ namespace Project1
         }
         // check weapon quality is Epic or Rare
 
-        //Convert Dictionary to List
-        public static List<T> ConvertDictToList(Dictionary<string, T> items)
-        {
-            List<T> itemsList = new List<T>(items.Values);
-            return itemsList;
-        }
-        //Convert Dictionary to List
+        
 
         //Sorting inventory
         public static void SortInventory(Dictionary<string, Item> items)
         {
-            List<Item> itemsList = ConvertDictToList(items);
+            List<Item> itemsList = Generic<Item>.ConvertDictToList(items);
             //itemsList.Sort();
 
             List<Weapon> weaponList = new List<Weapon>();

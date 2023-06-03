@@ -12,14 +12,12 @@ namespace Project1
         private int totalItem;
         protected float gold;
 
-        private Dictionary<string, Item> items;
-        private Dictionary<string, Weapon> weapons;
-        private Dictionary<string, Cloth> cloths;
+        public Dictionary<string, Item> items;
+        public Dictionary<string, Weapon> weapons;
+        public Dictionary<string, Cloth> cloths;
 
-        public Dictionary<string, Item> tempItems;
 
         public float Gold { get => gold; }
-        public Dictionary<string, Item> Items { get => tempItems; }
 
         //constructor
         public Inventory()
@@ -27,34 +25,9 @@ namespace Project1
             totalItem = 0;
             gold = 0;
             items = new Dictionary<string, Item>(capacity);
-            weapons = new Dictionary<string, Weapon>();
-            cloths = new Dictionary<string, Cloth>();
-            tempItems = new Dictionary<string, Item>();
         }
         //constructor
-
-        //Weapon Inventory
-        public void WeaponInventory()
-        {
-            tempItems.Clear();
-
-            List<Weapon> weaponSort = GameUtilities<Weapon>.ConvertDictToList(weapons);
-            weaponSort.Sort();
-            for (int i = 0; i < weaponSort.Count; i++)
-                tempItems[weaponSort[i].Name] = weaponSort[i];
-        }
-        //Weapon Inventory
-
-        //Cloth Inventory
-        public void ClothInventory()
-        {
-            tempItems.Clear();
-
-            List<Cloth> clothSort = GameUtilities<Cloth>.ConvertDictToList(cloths);
-            clothSort.Sort();
-            for (int i = 0; i < clothSort.Count; i++)
-                tempItems[clothSort[i].Name] = clothSort[i];
-        }
+        
 
         //Store item
         public void StoreItem(Item item)
@@ -62,19 +35,18 @@ namespace Project1
             if (totalItem >= capacity)
                 return;
 
-            if (Items.ContainsKey(item.Name))
+            if (items.ContainsKey(item.Name))
             {
-                AddGold(Items[item.Name].Price);
-                Items[item.Name] = item;
+                AddGold(items[item.Name].Price);
+                items[item.Name] = item;
             }
             else
             {
-                Items.Add(item.Name, item);
+                items.Add(item.Name, item);
                 totalItem++;
             }
         }
         //Store item
-
 
         //Sell item
         public void SellItem(Item item)
@@ -82,10 +54,10 @@ namespace Project1
             if (totalItem <= 0)
                 return;
 
-            if (Items.ContainsKey(item.Name))
+            if (items.ContainsKey(item.Name))
             {
                 AddGold(item.Price);
-                Items.Remove(item.Name);
+                items.Remove(item.Name);
                 totalItem--;
             }
             else 
@@ -113,17 +85,56 @@ namespace Project1
         //Show all item
         public void ShowAllItem()
         {
+            Console.Clear();
+
             //GameUtilities.SortInventory(items);
+            List<Item> itemList = Generic<Item>.ConvertDictToList(items);
 
-            foreach (string key in items.Keys)
-                items[key].ShowInfor();
+            foreach (Item item in itemList)
+                item.ShowInfor();
 
-            Console.WriteLine();
+            GameUtilities.ShowLine(20);
             Console.WriteLine("Total items: " + items.Count);
-            Console.WriteLine();
             Console.WriteLine("Gold: " + gold);
+
+            Console.ReadKey();
         }//Show all item
 
+        //Show all weapon
+        public void ShowAllWeapon()
+        {
+            foreach (string name in items.Keys)
+                if (items[name] is Weapon)
+                    weapons.Add(name, items[name] as Weapon);
+
+            List<Weapon> weaponList = Generic<Weapon>.ConvertDictToList(weapons);
+            weaponList.Sort();
+
+            foreach(Weapon weapon in weaponList)
+                weapon.ShowInfor();
+            Console.WriteLine("Total weapon: " + weaponList.Count);
+
+            Console.ReadKey();
+        }
+        //Show all weapon
+
+        //Show all cloth
+        public void ShowAllCloth()
+        {
+            foreach (string name in items.Keys)
+                if (items[name] is Cloth)
+                    cloths.Add(name, items[name] as Cloth);
+
+            List<Cloth> clothList = Generic<Cloth>.ConvertDictToList(cloths);
+            clothList.Sort();
+
+            foreach (Cloth cloth in clothList)
+                cloth.ShowInfor();
+            Console.WriteLine("Total weapon: " + clothList.Count);
+
+            Console.ReadKey();
+        }
+        //Show all cloth
     }
 }
 

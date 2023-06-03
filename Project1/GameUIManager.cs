@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,52 +9,61 @@ namespace Project1
 {
     public class GameUIManager
     {
-        public Menu[] menus;
+        public Menu<Item> item;
+        public Menu<Weapon> weapon;
+        public Menu<Cloth> cloth;
 
         public GameUIManager()
         {
-            menus = new Menu[5];
-
             MenuGenerate();
-            AddFunction();
         }
 
         public void MenuGenerate()
         {
-            menus[0] = null;
-            menus[1] = new Menu("Weapons");
-            menus[2] = new Menu("Cloths");
-            menus[3] = new Menu("Inventory");
-            menus[menus.Length - 1] = new Menu("Information");
-        }
+            item = new Menu<Item>("Inventory");
+            weapon = new Menu<Weapon>("Weapons");
+            cloth = new Menu<Cloth>("Cloths");
 
-        public void AddFunction()
-        {
-            for (int i = 1; i < menus.Length - 1; i++)
-            {
-                menus[i].AddFunction("Update", () => { GamePanel.Update(Menu.inventory); });
-                menus[i].AddFunction("Add", () => { GamePanel.Add(Menu.inventory); }) ;
-                menus[i].AddFunction("Sell", () => { GamePanel.Sell(Menu.inventory); }) ;
-                menus[i].AddFunction("Show all", () => { GamePanel.ShowAll(Menu.inventory); });
-            }
+            item.AddFunction("Show inventory information", () => GamePanel.inventory.ShowAllItem());
 
-            menus[menus.Length - 1].AddFunction("Show all", () => { Menu.inventory.ShowAllItem(); });
-            menus[menus.Length - 1].AddFunction("Show gold", () => { Console.WriteLine(Menu.inventory.Gold); });
+            weapon.AddFunction("Update", () => GamePanel.Update(Menu<Weapon>.item));
+            weapon.AddFunction("Add", () => GamePanel.Add(Menu<Weapon>.item));
+            weapon.AddFunction("Sell", () => GamePanel.Sell(Menu<Weapon>.item));
+            weapon.AddFunction("Show all", () => GamePanel.ShowAll(Menu<Weapon>.item));
+
+            cloth.AddFunction("Update", () => GamePanel.Update(Menu<Cloth>.item));
+            cloth.AddFunction("Add", () => GamePanel.Add(Menu<Cloth>.item));
+            cloth.AddFunction("Sell", () => GamePanel.Sell(Menu<Cloth>.item));
+            cloth.AddFunction("Show all", () => GamePanel.ShowAll(Menu<Cloth>.item));
         }
 
         public void ShowBaseMenu()
         {
             Console.Clear();
             Console.WriteLine("INVENTORY MANAGER MENU");
-            GameUtilities<Item>.ShowLine(20);
+            GameUtilities.ShowLine(20);
 
-            for (int i = 1; i < menus.Length; i++)
-                Console.WriteLine($"{i}. {menus[i].menuName} Manager");
+            Console.WriteLine("1. Weapon manger.");
+            Console.WriteLine("2. Cloth manger.");
+            Console.WriteLine("3. Inventory manger.");
 
-            GameUtilities<Item>.ShowLine(20);
+            GameUtilities.ShowLine(20);
             Console.Write("Enter selection: ");
             int key = int.Parse(Console.ReadLine());
-            menus[key].MenuUI();
+
+            switch (key)
+            {
+                case 1:
+                    weapon.MenuUI();
+                    break;
+                case 2:
+                    cloth.MenuUI();
+                    break;
+                case 3:
+                    item.MenuUI();
+                    break;
+            }
+
         }
         
     }

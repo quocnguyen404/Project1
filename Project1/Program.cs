@@ -12,8 +12,11 @@ namespace Project1
         {
            GameUIManager gameUIManager = new GameUIManager();
 
-            gameUIManager.ShowBaseMenu();
+            while (true)
+            {
+                gameUIManager.ShowBaseMenu();
 
+            }
 
         }
     }
