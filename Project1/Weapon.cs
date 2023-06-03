@@ -22,7 +22,7 @@ namespace Project1
         public int Level { get => level; }
         public _Quality Quality { get => quality; }
 
-        public override float Price => base.Price * Level * (float)Quality;
+        public override float Price => base.Price/* * Level * (float)Quality*/;
 
         public int CompareTo(Weapon other)
         {

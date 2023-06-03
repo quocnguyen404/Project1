@@ -36,7 +36,7 @@ namespace Project1
 
         public int Star { get => star; }
         public _Rarity Rarity { get => rarity; }
-        public override float Price => base.Price * Star * (float)Rarity;
+        public override float Price => base.Price /** Star * (float)Rarity*/;
 
         public Cloth()
         {

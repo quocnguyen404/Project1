@@ -10,14 +10,15 @@ namespace Project1
     public class Menu<T> where T : Item
     {
         //Field
-        public static T item;
+        public T item;
         public string menuName = "";
         private List<MenuFunction> Functions;
         //Field
 
         //Constructor
-        public Menu(string menuName)
+        public Menu(string menuName, T item)
         {
+            this.item = item;
             this.menuName = menuName;
             Functions = new List<MenuFunction>();
         }

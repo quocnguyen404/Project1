@@ -36,7 +36,7 @@ namespace Project1
         {
             id = GetHashCode();
             name = GetType().Name + " " + "0" + " " + GameUtilities.GetRandom(0, 10);
-            price = GameUtilities.GetRandom(5, 10);
+            //price = GameUtilities.GetRandom(5, 10);
         }
 
         public virtual void ShowInfor()

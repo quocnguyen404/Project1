@@ -13,18 +13,31 @@ namespace Project1
 
         public static void Update(Item item) 
         {
-            Console.Write($"Enter {item.GetType()} name: ");
+            string type = GameUtilities.ItemType(item);
+
+            if (inventory.totalItem <= 0)
+            {
+                Console.WriteLine($"There is no item in {type} inventory");
+
+                Console.WriteLine("Type any key to back.");
+                Console.ReadKey();
+                return;
+            }    
+
+            Console.Clear();
+
+            Console.Write($"Enter {type} name: ");
             string name = Console.ReadLine();
 
             if (inventory.items.ContainsKey(name))
             {
-                Console.WriteLine("Enter new name: ");
+                Console.WriteLine($"Enter new {type} name: ");
                 inventory.items[name].Name = Console.ReadLine();
 
-                Console.WriteLine("Enter new price: ");
+                Console.WriteLine($"Enter new {type} price: ");
                 inventory.items[name].Price = int.Parse(Console.ReadLine());
 
-                Console.WriteLine($"Udapte {item.GetType()} {name} success!");
+                Console.WriteLine($"Udapte {type} {name} success!");
                 Console.WriteLine("Type any key to back.");
                 Console.ReadKey();
             }
@@ -35,7 +48,6 @@ namespace Project1
                 Console.WriteLine("Type any key to back.");
                 Console.ReadKey();
             }
-
         }
 
         public static void Add(Item item) 
@@ -51,7 +63,7 @@ namespace Project1
                 Console.Write("Enter weapon price: ");
                 weapon.Price = int.Parse(Console.ReadLine());
 
-                inventory.items.Add(weapon.Name, weapon);
+                inventory.StoreItem(weapon);
                 
                 Console.WriteLine($"Add weapon {weapon.Name} success!");
                 Console.WriteLine("Type any key to back.");
@@ -67,8 +79,8 @@ namespace Project1
                 Console.Write("Enter cloth price: ");
                 cloth.Price = int.Parse(Console.ReadLine());
 
-                inventory.items.Add(cloth.Name, cloth);
-                
+                inventory.StoreItem(cloth);
+
                 Console.WriteLine($"Add cloth {cloth.Name} success!");
 
                 Console.WriteLine("Type any key to back.");
@@ -84,14 +96,26 @@ namespace Project1
 
         public static void Sell(Item item)
         {
-            Console.Write($"Enter {item.GetType()} name: ");
+            string type = GameUtilities.ItemType(item);
+
+            if (inventory.totalItem <= 0)
+            {
+                Console.WriteLine($"There is no item in {type} inventory");
+                Console.WriteLine("Type any key to back.");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Clear();
+
+            Console.Write($"Enter {type} name: ");
             string name = Console.ReadLine();
 
             if (inventory.items.ContainsKey(name))
             {
                 float gold = inventory.items[name].Price;
                 inventory.SellItem(inventory.items[name]);
-                Console.WriteLine($"Sell {item.GetType()} success!");
+                Console.WriteLine($"Sell {type} success!");
                 Console.WriteLine($"Add {gold} golds to inventory");
 
             }
@@ -107,7 +131,7 @@ namespace Project1
                 inventory.ShowAllCloth();
             else
             {
-                Console.WriteLine("WTF");
+                Console.WriteLine("Undefine");
                 Console.ReadKey();
             }
         }

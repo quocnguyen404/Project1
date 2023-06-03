@@ -9,6 +9,7 @@ namespace Project1
 {
     public class GameUIManager
     {
+        
         public Menu<Item> item;
         public Menu<Weapon> weapon;
         public Menu<Cloth> cloth;
@@ -20,21 +21,25 @@ namespace Project1
 
         public void MenuGenerate()
         {
-            item = new Menu<Item>("Inventory");
-            weapon = new Menu<Weapon>("Weapons");
-            cloth = new Menu<Cloth>("Cloths");
+            Item items = new Item();
+            Weapon weapons = new Weapon();
+            Cloth cloths = new Cloth();
+
+            item = new Menu<Item>("Inventory", items);
+            weapon = new Menu<Weapon>("Weapons", weapons);
+            cloth = new Menu<Cloth>("Cloths", cloths);
 
             item.AddFunction("Show inventory information", () => GamePanel.inventory.ShowAllItem());
 
-            weapon.AddFunction("Update", () => GamePanel.Update(Menu<Weapon>.item));
-            weapon.AddFunction("Add", () => GamePanel.Add(Menu<Weapon>.item));
-            weapon.AddFunction("Sell", () => GamePanel.Sell(Menu<Weapon>.item));
-            weapon.AddFunction("Show all", () => GamePanel.ShowAll(Menu<Weapon>.item));
+            weapon.AddFunction("Update", () => GamePanel.Update(weapon.item));
+            weapon.AddFunction("Add", () => GamePanel.Add(weapon.item));
+            weapon.AddFunction("Sell", () => GamePanel.Sell(weapon.item));
+            weapon.AddFunction("Show all", () => GamePanel.ShowAll(weapon.item));
 
-            cloth.AddFunction("Update", () => GamePanel.Update(Menu<Cloth>.item));
-            cloth.AddFunction("Add", () => GamePanel.Add(Menu<Cloth>.item));
-            cloth.AddFunction("Sell", () => GamePanel.Sell(Menu<Cloth>.item));
-            cloth.AddFunction("Show all", () => GamePanel.ShowAll(Menu<Cloth>.item));
+            cloth.AddFunction("Update", () => GamePanel.Update(cloth.item));
+            cloth.AddFunction("Add", () => GamePanel.Add(cloth.item));
+            cloth.AddFunction("Sell", () => GamePanel.Sell(cloth.item));
+            cloth.AddFunction("Show all", () => GamePanel.ShowAll(cloth.item));
         }
 
         public void ShowBaseMenu()
@@ -63,10 +68,6 @@ namespace Project1
                     item.MenuUI();
                     break;
             }
-
         }
-        
     }
-   
-
 }

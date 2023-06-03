@@ -126,6 +126,17 @@ namespace Project1
             return name.Split()[0].ToLower();
         }
 
+        public static string ItemType(Item item)
+        {
+            string type = "";
+
+            if (item is Weapon)
+                type = "Weapon";
+            else if (item is Cloth)
+                type = "Cloth";
+
+            return type;
+        }
 
 
         //public static void ToDictionay(List<Item> items, Dictionary<string, Item> dictItems)

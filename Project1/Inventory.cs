@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Project1
     public class Inventory
     {
         private int capacity = 10;
-        private int totalItem;
+        public int totalItem;
         protected float gold;
 
         public Dictionary<string, Item> items;
@@ -103,16 +104,23 @@ namespace Project1
         //Show all weapon
         public void ShowAllWeapon()
         {
-            foreach (string name in items.Keys)
-                if (items[name] is Weapon)
-                    weapons.Add(name, items[name] as Weapon);
+            Console.Clear();
 
-            List<Weapon> weaponList = Generic<Weapon>.ConvertDictToList(weapons);
+            List<Weapon> weaponList = new List<Weapon>();
+
+            foreach (string key in items.Keys)
+            {
+                if (items[key] is Weapon)
+                    weaponList.Add(items[key] as Weapon);
+            }
+
             weaponList.Sort();
 
             foreach(Weapon weapon in weaponList)
                 weapon.ShowInfor();
-            Console.WriteLine("Total weapon: " + weaponList.Count);
+
+            Console.WriteLine();
+            Console.WriteLine("Total weapons: " + weaponList.Count);
 
             Console.ReadKey();
         }
@@ -121,16 +129,21 @@ namespace Project1
         //Show all cloth
         public void ShowAllCloth()
         {
-            foreach (string name in items.Keys)
-                if (items[name] is Cloth)
-                    cloths.Add(name, items[name] as Cloth);
+            Console.Clear();
 
-            List<Cloth> clothList = Generic<Cloth>.ConvertDictToList(cloths);
-            clothList.Sort();
+            List<Cloth> clothList = new List<Cloth>();
+
+            foreach (string key in items.Keys)
+            {
+                if (items[key] is Cloth)
+                    clothList.Add(items[key] as Cloth);
+            }
 
             foreach (Cloth cloth in clothList)
                 cloth.ShowInfor();
-            Console.WriteLine("Total weapon: " + clothList.Count);
+
+            Console.WriteLine();
+            Console.WriteLine("Total cloths: " + clothList.Count);
 
             Console.ReadKey();
         }
