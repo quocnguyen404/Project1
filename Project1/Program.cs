@@ -6,19 +6,38 @@ using System.Threading.Tasks;
 
 namespace Project1
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+
+        public static GameUIManager gameUIManager = new GameUIManager();
+
+        public static void Main(string[] args)
         {
-           GameUIManager gameUIManager = new GameUIManager();
 
             while (true)
             {
                 gameUIManager.ShowBaseMenu();
-                
-
             }
+            
+        }
+        public static void WeaponMenu()
+        {
+            gameUIManager.weapon.MenuUI();
+        }
 
+        public static void ClothMenu()
+        {
+            gameUIManager.cloth.MenuUI();
+        }
+
+        public static void InventoryMenu()
+        {
+            gameUIManager.item.MenuUI();
+        }
+
+        public static void MainMenu()
+        {
+            gameUIManager.menu.MenuUI();
         }
     }
 }

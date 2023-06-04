@@ -11,7 +11,7 @@ namespace Project1
     {
         //Field
         private int capacity = 10;
-        public int totalItem;
+        private int totalItem;
         protected float gold;
 
         public Dictionary<string, Item> items;

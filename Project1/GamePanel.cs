@@ -18,7 +18,7 @@ namespace Project1
         {
             string type = GameUtilities.ItemType(item);
 
-            if (inventory.totalItem <= 0)
+            if (inventory.TotalItem <= 0)
             {
                 Console.WriteLine($"There is no item in {type} inventory");
 
@@ -107,7 +107,7 @@ namespace Project1
         {
             string type = GameUtilities.ItemType(item);
 
-            if (inventory.totalItem <= 0)
+            if (inventory.TotalItem <= 0)
             {
                 Console.WriteLine($"There is no item in {type} inventory");
                 Console.WriteLine("Type any key to back.");
@@ -136,6 +136,17 @@ namespace Project1
         //Show all
         public static void ShowAll(Item item) 
         {
+            string type = GameUtilities.ItemType(item);
+
+            if (inventory.TotalItem <= 0)
+            {
+                Console.WriteLine($"There is no item in {type} inventory");
+
+                Console.WriteLine("Type any key to back.");
+                Console.ReadKey();
+                return;
+            }
+
             if (item is Weapon)
                 inventory.ShowAllWeapon();
             else if (item is Cloth)

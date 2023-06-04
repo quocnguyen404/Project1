@@ -38,7 +38,7 @@ namespace Project1
         public virtual void MenuUI()
         {
             Console.Clear();
-            Console.WriteLine($"{this.menuName.ToUpper()} MENU MANAGER");
+            Console.WriteLine($"{this.menuName.ToUpper()} MANAGER MENU");
             GameUtilities.ShowLine(20);
 
             int index = 1;
@@ -50,10 +50,22 @@ namespace Project1
 
             GameUtilities.ShowLine(20);
 
-            Console.Write("Enter selection: ");
-            int key = int.Parse(Console.ReadLine());
+            int key;
 
-            this.Functions[key - 1].function.Invoke();
+            while (true)
+            {
+                Console.Write("Enter selection: ");
+                bool input = int.TryParse(Console.ReadLine(), out key);
+
+                if (input && (key > 0 && key <= Functions.Count))
+                {
+                    this.Functions[key - 1].function.Invoke();
+                    break;
+                }
+                Console.WriteLine();
+                Console.WriteLine("Try other option!\n");
+
+            }
         }
         //Menu UI Show
 
