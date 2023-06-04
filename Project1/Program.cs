@@ -8,18 +8,20 @@ namespace Project1
 {
     public class Program
     {
-
+        //Initialization UI
         public static GameUIManager gameUIManager = new GameUIManager();
+        //Initialization UI
 
         public static void Main(string[] args)
         {
-
             while (true)
             {
                 gameUIManager.ShowBaseMenu();
             }
             
         }
+
+        //Switch menu method
         public static void WeaponMenu()
         {
             gameUIManager.weapon.MenuUI();
@@ -39,5 +41,6 @@ namespace Project1
         {
             gameUIManager.menu.MenuUI();
         }
+        //Switch menu method
     }
 }

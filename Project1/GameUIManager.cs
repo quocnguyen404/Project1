@@ -16,6 +16,7 @@ namespace Project1
         public Menu<Cloth> cloth;
         //Field
 
+
         //Constructor
         public GameUIManager()
         {
@@ -58,10 +59,8 @@ namespace Project1
             cloth.AddFunction("Sell", () => GamePanel.Sell(cloth.item));
             cloth.AddFunction("Show all", () => GamePanel.ShowAll(cloth.item));
             cloth.AddFunction("Back", () => Program.MainMenu());
-
         }
         //Menu setting
-
 
         //BaseMenu
         public void ShowBaseMenu()
