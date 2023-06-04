@@ -9,17 +9,22 @@ namespace Project1
 {
     public class GameUIManager
     {
-        
+        //Field
         public Menu<Item> item;
         public Menu<Weapon> weapon;
         public Menu<Cloth> cloth;
+        //Field
 
+        //Constructor
         public GameUIManager()
         {
             MenuGenerate();
         }
+        //Constructor
 
-        public void MenuGenerate()
+
+        //Menu setting
+        private void MenuGenerate()
         {
             Item items = new Item();
             Weapon weapons = new Weapon();
@@ -41,7 +46,10 @@ namespace Project1
             cloth.AddFunction("Sell", () => GamePanel.Sell(cloth.item));
             cloth.AddFunction("Show all", () => GamePanel.ShowAll(cloth.item));
         }
+        //Menu setting
 
+
+        //BaseMenu
         public void ShowBaseMenu()
         {
             Console.Clear();
@@ -69,5 +77,6 @@ namespace Project1
                     break;
             }
         }
+        //Base Menu
     }
 }

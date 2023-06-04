@@ -61,6 +61,7 @@ namespace Project1
         }
         // CAN STORE CONDITION
 
+
         // check weapon quality is Epic or Rare
         public static bool IsEpicRare(Item item)
         {
@@ -114,18 +115,23 @@ namespace Project1
         }
         //Sort inventory
 
+        //Show line
         public static void ShowLine(int length)
         {
             for (int i = 0; i < length; i++)
                 Console.Write("-");
             Console.WriteLine();
         }
+        //Show line
 
+        //Take first word
         public static string FirstName(string name)
         {
             return name.Split()[0].ToLower();
         }
+        //Take first word
 
+        //Check item is Weapon or Cloth type
         public static string ItemType(Item item)
         {
             string type = "";
@@ -136,6 +142,14 @@ namespace Project1
                 type = "Cloth";
 
             return type;
+        }
+        //Check item is Weapon or Cloth type
+
+
+        //Check input user
+        public static int BackOption(int input)
+        {
+            return input;
         }
 
 

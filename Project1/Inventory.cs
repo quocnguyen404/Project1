@@ -9,6 +9,7 @@ namespace Project1
 {
     public class Inventory
     {
+        //Field
         private int capacity = 10;
         public int totalItem;
         protected float gold;
@@ -16,18 +17,21 @@ namespace Project1
         public Dictionary<string, Item> items;
         public Dictionary<string, Weapon> weapons;
         public Dictionary<string, Cloth> cloths;
+        //Field
 
-
+        //Properties
         public float Gold { get => gold; }
+        public int TotalItem { get => totalItem; }
+        //Properties
 
-        //constructor
+        //Constructor
         public Inventory()
         {
             totalItem = 0;
             gold = 0;
             items = new Dictionary<string, Item>(capacity);
         }
-        //constructor
+        //Constructor
         
 
         //Store item
@@ -49,6 +53,7 @@ namespace Project1
         }
         //Store item
 
+
         //Sell item
         public void SellItem(Item item)
         {
@@ -67,7 +72,8 @@ namespace Project1
         //Sell item
 
 
-        //Sell Rare and Epic items
+
+        //Sell particular items
         public void SellItem(Item item, bool condition)
         {
             if (!condition)
@@ -75,7 +81,8 @@ namespace Project1
             else
                 SellItem(item);
         }
-        //Sell Rare and Epic items
+        //Sell particular items
+
 
         //Add gold
         public void AddGold(float value)
@@ -101,6 +108,7 @@ namespace Project1
             Console.ReadKey();
         }//Show all item
 
+
         //Show all weapon
         public void ShowAllWeapon()
         {
@@ -125,6 +133,7 @@ namespace Project1
             Console.ReadKey();
         }
         //Show all weapon
+
 
         //Show all cloth
         public void ShowAllCloth()

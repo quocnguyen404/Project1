@@ -12,8 +12,9 @@ namespace Project1
         //Field
         public T item;
         public string menuName = "";
-        private List<MenuFunction> Functions;
+        public List<MenuFunction> Functions;
         //Field
+
 
         //Constructor
         public Menu(string menuName, T item)
@@ -33,7 +34,7 @@ namespace Project1
         //Add function to menu
 
 
-        //Menu UI Show
+        //Menu UI show
         public virtual void MenuUI()
         {
             Console.Clear();

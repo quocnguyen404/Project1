@@ -9,8 +9,11 @@ namespace Project1
 {
     public class GamePanel
     {
+        //Inventory
         public static Inventory inventory = new Inventory();
 
+
+        //Update
         public static void Update(Item item) 
         {
             string type = GameUtilities.ItemType(item);
@@ -49,7 +52,10 @@ namespace Project1
                 Console.ReadKey();
             }
         }
+        //Update
 
+
+        //Add
         public static void Add(Item item) 
         {
             Console.Clear();
@@ -93,7 +99,10 @@ namespace Project1
                 Console.ReadKey();
             }
         }
+        //Add
+        
 
+        //Sell
         public static void Sell(Item item)
         {
             string type = GameUtilities.ItemType(item);
@@ -122,7 +131,9 @@ namespace Project1
             else
                 Console.WriteLine($"{name} don't exist in inventory.");
         }
+        //Sell
 
+        //Show all
         public static void ShowAll(Item item) 
         {
             if (item is Weapon)
@@ -135,5 +146,7 @@ namespace Project1
                 Console.ReadKey();
             }
         }
+        //Show all
+
     }
 }
