@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -150,6 +150,40 @@ namespace Project1
         public static int BackOption(int input)
         {
             return input;
+        }
+
+        public static void CheckingItemInInventory(string type, Inventory inventory, Item item)
+        {
+            if (inventory.TotalItem <= 0)
+            {
+                Console.WriteLine($"There is no item in {type} inventory");
+                Console.WriteLine("Type any key to back.");
+                Console.ReadKey();
+                return;
+            }
+
+            switch (item.GetType().Name)
+            {
+                case "Weapon":
+                    if (inventory.TotalWeapon <= 0)
+                    {
+                        Console.WriteLine($"There is no item in {type} inventory");
+                        Console.WriteLine("Type any key to back.");
+                        Console.ReadKey();
+                        return;
+                    }
+                    break;
+
+                case "Cloth":
+                    if (inventory.TotalCloth <= 0)
+                    {
+                        Console.WriteLine($"There is no item in {type} inventory");
+                        Console.WriteLine("Type any key to back.");
+                        Console.ReadKey();
+                        return;
+                    }
+                    break;
+            }
         }
 
 
