@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,9 +10,13 @@ namespace Project1
     public class Inventory
     {
         //Field
+        private static Inventory instance;
+
         private int capacity = 10;
         private int totalItem;
-        protected float gold;
+        private float gold;
+        private int totalWeapon;
+        private int totalCloth;
 
         public Dictionary<string, Item> items;
         public Dictionary<string, Weapon> weapons;
@@ -20,12 +24,26 @@ namespace Project1
         //Field
 
         //Properties
+
+        public static Inventory Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new Inventory();
+                return instance;
+            }
+        }
+
         public float Gold { get => gold; }
         public int TotalItem { get => totalItem; }
+        public int TotalWeapon { get => totalWeapon; }
+        public int TotalCloth { get => totalCloth; }
+
         //Properties
 
         //Constructor
-        public Inventory()
+        private Inventory()
         {
             totalItem = 0;
             gold = 0;
@@ -128,6 +146,7 @@ namespace Project1
 
             Console.WriteLine();
             Console.WriteLine("Total weapons: " + weaponList.Count);
+            totalWeapon = weaponList.Count;
 
             Console.ReadKey();
         }
@@ -152,6 +171,7 @@ namespace Project1
 
             Console.WriteLine();
             Console.WriteLine("Total cloths: " + clothList.Count);
+            totalCloth = clothList.Count;
 
             Console.ReadKey();
         }
