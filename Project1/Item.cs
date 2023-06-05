@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Project1
 {
 
-    public class Item/* : IComparable<Item>*/
+    public class Item : IComparable<Item>
     {
         public enum _Type
         {
