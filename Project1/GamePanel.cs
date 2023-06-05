@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,23 +9,16 @@ namespace Project1
 {
     public class GamePanel
     {
-        //Inventory
-        public static Inventory inventory = new Inventory();
 
+        //Reference to instance inventory
+        private static Inventory inventory = Inventory.Instance;
 
         //Update
         public static void Update(Item item) 
         {
             string type = GameUtilities.ItemType(item);
 
-            if (inventory.TotalItem <= 0)
-            {
-                Console.WriteLine($"There is no item in {type} inventory");
-
-                Console.WriteLine("Type any key to back.");
-                Console.ReadKey();
-                return;
-            }    
+            GameUtilities.CheckingItemInInventory(type, inventory, item);
 
             Console.Clear();
 
@@ -107,13 +100,7 @@ namespace Project1
         {
             string type = GameUtilities.ItemType(item);
 
-            if (inventory.TotalItem <= 0)
-            {
-                Console.WriteLine($"There is no item in {type} inventory");
-                Console.WriteLine("Type any key to back.");
-                Console.ReadKey();
-                return;
-            }
+            GameUtilities.CheckingItemInInventory(type, inventory, item);
 
             Console.Clear();
 
