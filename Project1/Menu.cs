@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -39,15 +39,14 @@ namespace Project1
         {
             Console.Clear();
             Console.WriteLine($"{this.menuName.ToUpper()} MANAGER MENU");
-            GameUtilities.ShowLine(20);
 
+            GameUtilities.ShowLine(20);
             int index = 1;
             foreach (MenuFunction function in Functions)
             {
                 Console.WriteLine($"{index}. {function.name} {menuName.ToLower()}");
                 index++;
             }
-
             GameUtilities.ShowLine(20);
 
             int key;
@@ -64,10 +63,8 @@ namespace Project1
                 }
                 Console.WriteLine();
                 Console.WriteLine("Try other option!\n");
-
             }
         }
         //Menu UI Show
-
     }
 }
