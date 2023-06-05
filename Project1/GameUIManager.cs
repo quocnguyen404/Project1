@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -9,21 +9,53 @@ namespace Project1
 {
     public class GameUIManager
     {
+        //unique GameUiManager instance
+        private static GameUIManager instance;
+
+
         //Field
-        public Menu<Item> menu;
-        public Menu<Item> item;
-        public Menu<Weapon> weapon;
-        public Menu<Cloth> cloth;
+        private Menu<Item> menu;
+        private Menu<Item> item;
+        private Menu<Weapon> weapon;
+        private Menu<Cloth> cloth;
         //Field
+
+
+        //Properties
+        public static GameUIManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new GameUIManager();
+                return instance;
+            }
+        }
+
+        public Menu<Item> Menu => menu;
+        public Menu<Item> Item => item;
+        public Menu<Weapon> Weapon => weapon;
+        public Menu<Cloth> Cloth => cloth;
+        //Properties
 
 
         //Constructor
-        public GameUIManager()
+        private GameUIManager()
         {
             MenuGenerate();
+            AddMainMenuFunction();
+            AddInventoryMenuFunction();
+            AddWeaponMenuFunction();
+            AddClothMenuFunction();
         }
         //Constructor
 
+        //Show base Menu
+        public void ShowBaseMenu()
+        {
+            menu.MenuUI();
+        }
+        //Show base Menu
 
         //Menu setting
         private void MenuGenerate()
@@ -40,33 +72,69 @@ namespace Project1
             weapon = new Menu<Weapon>("Weapons", weapons);
             cloth = new Menu<Cloth>("Cloths", cloths);
             //Initializationz menu
+        }
+        //Menu setting
 
-            menu.AddFunction("Weapon menu", () => Program.WeaponMenu());
-            menu.AddFunction("Cloth menu", () => Program.ClothMenu());
-            menu.AddFunction("Inventory menu", () => Program.InventoryMenu());
+        //Add function to main menu
+        private void AddMainMenuFunction()
+        {
+            menu.AddFunction("Weapon menu", () => WeaponMenu());
+            menu.AddFunction("Cloth menu", () => ClothMenu());
+            menu.AddFunction("Inventory menu", () => InventoryMenu());
+        }
 
-            item.AddFunction("Show inventory information", () => GamePanel.inventory.ShowAllItem());
-            item.AddFunction("Back", () => Program.MainMenu());
 
+        //Add function to Inventory menu
+        private void AddInventoryMenuFunction()
+        {
+            item.AddFunction("Show inventory information", () => Inventory.Instance.ShowAllItem());
+            item.AddFunction("Back", () => MainMenu());
+        }
+
+
+        //Add function to Weapon menu
+        private void AddWeaponMenuFunction()
+        {
             weapon.AddFunction("Update", () => GamePanel.Update(weapon.item));
             weapon.AddFunction("Add", () => GamePanel.Add(weapon.item));
             weapon.AddFunction("Sell", () => GamePanel.Sell(weapon.item));
             weapon.AddFunction("Show all", () => GamePanel.ShowAll(weapon.item));
-            weapon.AddFunction("Back", () => Program.MainMenu());
+            weapon.AddFunction("Back", () => MainMenu());
+        }
 
+
+        //Add function to Cloth menu
+        private void AddClothMenuFunction()
+        {
             cloth.AddFunction("Update", () => GamePanel.Update(cloth.item));
             cloth.AddFunction("Add", () => GamePanel.Add(cloth.item));
             cloth.AddFunction("Sell", () => GamePanel.Sell(cloth.item));
             cloth.AddFunction("Show all", () => GamePanel.ShowAll(cloth.item));
-            cloth.AddFunction("Back", () => Program.MainMenu());
+            cloth.AddFunction("Back", () => MainMenu());
         }
-        //Menu setting
+        //Add function to Cloth menu
 
-        //BaseMenu
-        public void ShowBaseMenu()
+
+        //Switch menu method
+        public static void WeaponMenu()
         {
-            menu.MenuUI();
+            Instance.Weapon.MenuUI();
         }
-        //Base Menu
+
+        public static void ClothMenu()
+        {
+            Instance.Cloth.MenuUI();
+        }
+
+        public static void InventoryMenu()
+        {
+            Instance.Item.MenuUI();
+        }
+
+        public static void MainMenu()
+        {
+            Instance.Menu.MenuUI();
+        }
+        //Switch menu method
     }
 }
